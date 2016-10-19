@@ -27,14 +27,18 @@ class PathMorph extends React.Component {
 			duration
 		});
 
-		this.canvas = document.getElementById(this.props.id);
-		this.eLis = this.canvas.addEventListener('mouseenter', pathMorph.forwards.bind(pathMorph));
-		this.lLis = this.canvas.addEventListener('mouseleave', pathMorph.backwards.bind(pathMorph));
+        if(hover) {
+            this.canvas = document.getElementById(this.props.id);
+    		this.eLis = this.canvas.addEventListener('mouseenter', pathMorph.forwards.bind(pathMorph));
+    		this.lLis = this.canvas.addEventListener('mouseleave', pathMorph.backwards.bind(pathMorph));
+        }
 	}
 
 	componentWillUnmount() {
-		this.canvas.removeEventListener('mouseenter', this.eLis);
-		this.canvas.removeEventListener('mouseleave', this.lLis);
+        if(this.props.hover) {
+            this.canvas.removeEventListener('mouseenter', this.eLis);
+    		this.canvas.removeEventListener('mouseleave', this.lLis);
+        }
 	}
 
 	render() {
